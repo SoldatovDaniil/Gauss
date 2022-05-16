@@ -1,0 +1,8 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: промежуточный каталог (Release\) содержит файлы, которые используются совместно с другим проектом (ProstoCode.vcxproj).  Это может привести к ошибкам очистки и перестроения.
+  GaussSolver.cpp
+  Создание кода
+  15 of 167 functions ( 9.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    3 functions had inline decision re-evaluated but remain unchanged
+  Создание кода завершено
+  ProstoCode.vcxproj -> C:\Users\Даниил\source\repos\ProstoCode\Release\Matrix.exe
