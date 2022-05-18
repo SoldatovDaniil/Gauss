@@ -13,9 +13,8 @@ std::vector <Vector> GaussSolver::solve(const Matrix& A, const Vector& b)
     int n = y.getSize();
     int M = a.getM();
     int N = a.getN();
-    std::vector <Vector> res(n, 0);
+    std::vector <Vector> res(1, Vector(n));
     std::vector <Vector> res1(0, 0);
-    res[0].resize(1);
 
     Matrix exMat(M, N + 1);
     for (int i = 0; i < M; i++)
@@ -30,7 +29,11 @@ std::vector <Vector> GaussSolver::solve(const Matrix& A, const Vector& b)
         exMat[k][N] = y[k];
     }
 
-    if (a.rank() < exMat.rank())
+    int rankA, rankExMat;
+    rankA = a.rank();
+    rankExMat = exMat.rank();
+
+    if (rankA != rankExMat)
     {
         return res1;
     }
@@ -43,13 +46,20 @@ std::vector <Vector> GaussSolver::solve(const Matrix& A, const Vector& b)
     exMat.traengl();
     
     // добавить проверку рангов и два обратных хода (1 при единственном решении, второй при многообразии)
-
-    res[0][M - 1] = exMat[M - 1][M];
-    for (int i = M - 2; i >= 0; i--)
+    if (rankA == rankExMat && rankA == M)
     {
-        res[0][i] = exMat[i][M];
-        for (int j = i + 1; j < M; j++)
-            res[0][i] -= exMat[i][j] * res[0][j];
+        res[0][M - 1] = exMat[M - 1][M];
+        for (int i = M - 2; i >= 0; i--)
+        {
+            res[0][i] = exMat[i][M];
+            for (int j = i + 1; j < M; j++)
+                res[0][i] -= exMat[i][j] * res[0][j];
+        }
+    }
+
+    else
+    {
+        // ресайз для вектора res + другой обратный ход с множеством решений
     }
 
     return res;
@@ -61,8 +71,8 @@ std::string GaussSolver::Test1()
     Matrix test(3, 3);
     Vector t(3);
     double eps = 0.0001;
-    std::vector <Vector> answer(1, 0);
-    std::vector <Vector> answer1(1, 0);
+    std::vector <Vector> answer(1, Vector(3));
+    std::vector <Vector> answer1(1, Vector(3));
     test[0][0] = 2;
     test[0][1] = 1;
     test[0][2] = 1;
@@ -98,8 +108,8 @@ std::string GaussSolver::Test2()
     Matrix test(3, 3);
     Vector t(3);
     double eps = 0.0001;
-    std::vector <Vector> answer(1, 0);
-    std::vector <Vector> answer1(1, 0);
+    std::vector <Vector> answer(1, Vector(3));
+    std::vector <Vector> answer1(1, Vector(3));
     test[0][0] = 2;
     test[0][1] = 3;
     test[0][2] = -1;
@@ -135,8 +145,8 @@ std::string GaussSolver::Test3()
     Matrix test(4, 4);
     Vector t(4);
     double eps = 0.001;
-    std::vector <Vector> answer(4, 0);
-    std::vector <Vector> answer1(4, 0);
+    std::vector <Vector> answer(4, Vector(4));
+    std::vector <Vector> answer1(4, Vector(4));
 
     test[0][0] = 1;
     test[0][1] = 2;
