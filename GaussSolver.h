@@ -1,5 +1,4 @@
 #pragma once
-#include "StartIncluder.h"
 
 
 class GaussSolver

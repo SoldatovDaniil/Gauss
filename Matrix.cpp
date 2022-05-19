@@ -82,6 +82,11 @@ Matrix& Matrix::operator-=(const Matrix& other)
 	return *this;
 }
 
+Vector Matrix::operator[](int a) const
+{
+	return data[a];
+}
+
 Vector& Matrix::operator[](int a)
 {
 	return data[a];
@@ -245,21 +250,49 @@ Matrix Matrix::trans()
 	return tmp;
 }
 
+void Matrix::sort(int col)
+{
+	double tmp, max = 0;
+	int index = col;
+
+	for (int i = col; i < m; i++)
+	{
+		if (abs(data[i][col]) > max)
+		{
+			max = abs(data[i][col]);
+			index = i;
+		}
+	}
+
+	for (int j = 0; j < n; j++)
+	{
+		tmp = data[index][j];
+		data[index][j] = data[col][j];
+		data[col][j] = tmp;
+	}
+}
+
 void Matrix::traengl()
 {
-	double  tmp;
-	int k;
+	double  tmp, max, temp;
+	int k, index;
 
 	for (int i = 0; i < m; i++)
 	{
+		(*this).sort(i);
 		tmp = data[i][i];
+
 		for (int j = m; j >= i; j--)
+		{
 			data[i][j] /= tmp;
+		}
 		for (int j = i + 1; j < m; j++)
 		{
 			tmp = data[j][i];
 			for (k = m; k >= i; k--)
+			{
 				data[j][k] -= tmp * data[i][k];
+			}
 		}
 	}
 }

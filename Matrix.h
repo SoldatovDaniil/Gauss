@@ -1,5 +1,5 @@
 #pragma once
-#include "StartIncluder.h"
+
 
 class Matrix
 {
@@ -16,6 +16,7 @@ public:
 
 	Matrix& operator=(const Matrix& other);
 	Matrix& operator+=(const Matrix& other);
+	Vector operator[](int a) const;
 	Vector& operator[](int a);
 	Matrix operator+(const Matrix& other) const;
 	Matrix operator-(const Matrix& other) const;
@@ -32,6 +33,7 @@ public:
 	int getM();
 	int getN();
 
+	void sort(int col);
 	void traengl();
 	Matrix trans();
 	void resize(int newM, int newN);

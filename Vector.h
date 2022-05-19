@@ -1,6 +1,4 @@
 #pragma once
-#include "StartIncluder.h"
-
 
 
 class Vector

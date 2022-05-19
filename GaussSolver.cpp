@@ -33,6 +33,7 @@ std::vector <Vector> GaussSolver::solve(const Matrix& A, const Vector& b)
     rankA = a.rank();
     rankExMat = exMat.rank();
 
+
     if (rankA != rankExMat)
     {
         return res1;
@@ -44,9 +45,9 @@ std::vector <Vector> GaussSolver::solve(const Matrix& A, const Vector& b)
     }
     
     exMat.traengl();
-    
+
     // добавить проверку рангов и два обратных хода (1 при единственном решении, второй при многообразии)
-    if (rankA == rankExMat && rankA == M)
+    if ((rankA == rankExMat) && (rankA == M))
     {
         res[0][M - 1] = exMat[M - 1][M];
         for (int i = M - 2; i >= 0; i--)
@@ -59,6 +60,7 @@ std::vector <Vector> GaussSolver::solve(const Matrix& A, const Vector& b)
 
     else
     {
+        return res1;
         // ресайз для вектора res + другой обратный ход с множеством решений
     }
 
