@@ -1,7 +1,10 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: промежуточный каталог (Release\) содержит файлы, которые используются совместно с другим проектом (ProstoCode.vcxproj).  Это может привести к ошибкам очистки и перестроения.
-  GaussSolver.cpp
+  Main.cpp
+C:\Users\Даниил\source\repos\ProstoCode\Main.cpp(80,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Даниил\source\repos\ProstoCode\Main.cpp(124,21): warning C4018: <: несоответствие типов со знаком и без знака
   Создание кода
-  Previous IPDB and IOBJ mismatch, fall back to full compilation.
-  All 168 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  1 of 207 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    4 functions had inline decision re-evaluated but remain unchanged
   Создание кода завершено
   ProstoCode.vcxproj -> C:\Users\Даниил\source\repos\ProstoCode\Release\Matrix.exe

@@ -224,6 +224,7 @@ int Matrix::getN()
 {
 	return n;
 }
+
 void Matrix::swap(int row1, int row2, int N)
 {
 	int temp; 
@@ -250,6 +251,19 @@ Matrix Matrix::trans()
 	return tmp;
 }
 
+bool Matrix::checkStr(int i)
+{
+	bool flag = 0;
+	for (int j = 0; j < n; j++)
+	{
+		if (data[i][j] != 0)
+		{
+			flag = 1;
+		}
+	}
+	return flag;
+}
+
 void Matrix::sort(int col)
 {
 	double tmp, max = 0;
@@ -274,7 +288,7 @@ void Matrix::sort(int col)
 
 void Matrix::traengl()
 {
-	double  tmp, max, temp;
+	double  tmp, max, eps = 0.000000000000001;
 	int k, index;
 
 	for (int i = 0; i < m; i++)
@@ -282,16 +296,26 @@ void Matrix::traengl()
 		(*this).sort(i);
 		tmp = data[i][i];
 
+		if (tmp == 0)
+		{
+			continue;
+		}
+
 		for (int j = m; j >= i; j--)
 		{
 			data[i][j] /= tmp;
 		}
+
 		for (int j = i + 1; j < m; j++)
 		{
 			tmp = data[j][i];
 			for (k = m; k >= i; k--)
 			{
 				data[j][k] -= tmp * data[i][k];
+				if (abs(data[j][k]) < eps)
+				{
+					data[j][k] = 0;
+				}
 			}
 		}
 	}
@@ -301,6 +325,7 @@ void Matrix::traengl()
 int Matrix::rank()
 {
 	Matrix mat(m, n);
+	int rank1 = n;
 
 	if (m >= n)
 	{
@@ -309,9 +334,8 @@ int Matrix::rank()
 	else
 	{
 		mat = (*this).trans();
+		rank1 = m;
 	}
-
-	int rank1 = mat.getN();
 
 	for (int i = 0; i < rank1; i++)
 	{
