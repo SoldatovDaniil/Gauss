@@ -16,6 +16,7 @@ public:
 	void resize(int newSize);
 	void print() const;
 	int getSize() const;
+	int check(int i);
 
 	Vector& operator=(const Vector& v);
 	Vector operator+(const Vector& v) const;

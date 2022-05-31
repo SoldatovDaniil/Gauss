@@ -211,3 +211,22 @@ int Vector::getSize() const
 {
 	return n;
 }
+
+int Vector::check(int i)
+{
+	int flag = 0;
+	for (int j = 0; j < n - 1; j++)
+	{
+		if (data[j] != 0)
+		{
+			flag += 1;
+		}
+	}
+
+	if (flag == 0 && data[n - 1] != 0)
+	{
+		return 1;
+	}
+
+	return 0;
+}

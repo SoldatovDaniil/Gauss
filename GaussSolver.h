@@ -11,5 +11,6 @@ public:
 	std::string Test1();
 	std::string Test2();
 	std::string Test3();
+	std::string Test4();
 
 };

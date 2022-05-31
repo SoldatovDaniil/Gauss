@@ -33,6 +33,7 @@ public:
 	int getM();
 	int getN();
 
+	bool checkStr(int i);
 	void sort(int col);
 	void traengl();
 	Matrix trans();
